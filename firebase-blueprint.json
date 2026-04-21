@@ -1,0 +1,27 @@
+{
+  "entities": {
+    "Decision": {
+      "title": "Decision",
+      "description": "Represents a user's decision or dilemma analysis.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string", "description": "The user who created this decision." },
+        "title": { "type": "string", "description": "Short title for the decision." },
+        "description": { "type": "string", "description": "Full description of the dilemma." },
+        "type": { "type": "string", "enum": ["pros_cons", "swot", "matrix", "hats", "regret", "decision_tree", "delphi"], "description": "The framework used for analysis." },
+        "analysis": { "type": "object", "description": "The structured analysis results from AI." },
+        "notes": { "type": "string", "description": "Hand-typed user notes." },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "title", "description", "type", "analysis", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/decisions/{decisionId}": {
+      "schema": "Decision",
+      "description": "Store all user decisions and their analyses."
+    }
+  }
+}

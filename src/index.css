@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@300;400;600&family=Shadows+Into+Light&family=Mrs+Saint+Delafield&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Montserrat", sans-serif;
+  --font-writing: "Shadows Into Light", cursive;
+  --font-script: "Mrs Saint Delafield", cursive;
+  
+  --color-sand: #f2ebdd;
+  --color-sand-dark: #e6dcc7;
+  --color-navy: #162a44;
+  --color-ochre: #d48a3e;
+  --color-clay: #b08d75;
+  --color-dusty: #92abb3;
+  --color-gold: #b3a270;
+}
+
+@layer base {
+  body {
+    @apply bg-sand text-navy font-sans min-h-screen;
+    background-image: 
+      url('https://www.transparenttextures.com/patterns/p6.png'),
+      radial-gradient(circle at 20% 20%, rgba(212, 138, 62, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(22, 42, 68, 0.05) 0%, transparent 40%);
+  }
+}
+
+.scrapbook-card {
+  @apply bg-[#fdfdfd] border border-black/5 shadow-[8px_8px_0px_0px_rgba(22,42,68,0.05)];
+  position: relative;
+}
+
+.scrapbook-card::before {
+  content: '';
+  @apply absolute top-0 left-0 w-full h-full pointer-events-none opacity-[0.03];
+  background-image: url('https://www.transparenttextures.com/patterns/paper.png');
+}
+
+.washi-tape {
+  @apply absolute -top-4 left-1/2 -translate-x-1/2 h-8 w-24 opacity-80 z-10;
+  background-color: var(--tape-color, #d48a3e);
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="30"><path d="M0 5 L10 0 L20 5 L30 0 L40 5 L50 0 L60 5 L70 0 L80 5 L90 0 L100 5 L100 25 L90 30 L80 25 L70 30 L60 25 L50 30 L40 25 L30 30 L20 25 L10 30 L0 25 Z" fill="black"/></svg>');
+  mask-size: cover;
+  transform: rotate(var(--tape-rotate, -2deg));
+}
+
+.torn-edge {
+  mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+}
+
